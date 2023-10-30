@@ -33,7 +33,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    
+
     const user = await UserModel.findOne({ email });
 
     // Check if user exists and password is correct
@@ -69,7 +69,7 @@ const forgetPassword = async (req, res) => {
     const token = jwt.sign({ email: user.email, id: user._id }, secret, { expiresIn: '15m' });
 
     // Send reset email
-    const resetLink = `${process.env.BACKEND_URL}/reset-password/${user._id}/${token}`;
+    const resetLink = `https://password-reset-backend-ehnj.onrender.com/reset-password/${user._id}/${token}`;
     // console.log(resetLink);
 
     var transporter = nodemailer.createTransport({
